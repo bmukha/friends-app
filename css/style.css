@@ -14,49 +14,89 @@
   padding: 0;
   --card-witdh: 344px;
   --card-height: 216px;
+  --header-height: 50px;
+  --footer-height: 20px;
+  --main-color: 45, 106, 79;
+  --secondary-color: 173, 216, 230;
+  --menu-width: 252px;
 }
 
 body {
-  /* width: 100vw;
-  height: 100vh; */
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  grid-template-rows: 50px 1fr auto;
-  grid-template-areas:
-    'header header'
-    'aside main'
-    'footer footer';
-  background: linear-gradient(#2d6a4f, lightblue);
+  background: linear-gradient(
+    rgb(var(--main-color)),
+    rgb(var(--secondary-color))
+  );
+  margin: 0 auto;
 }
 
-/* body > * {
-  border: 1px solid black;
-} */
-
 .header {
-  grid-area: header;
-  /* background-color: yellow; */
-  /* position: sticky;
-  top: 0; */
+  position: fixed;
+  width: 100vw;
+  height: var(--header-height);
+  background: rgba(var(--secondary-color), 0.9);
+  text-align: center;
+  top: 0;
   box-shadow: 5px 5px 5px black;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  font-family: Peas;
 }
 
 #cards-wrapper {
-  grid-area: main;
+  width: 100%;
   display: grid;
   gap: 1em;
   grid-template-columns: repeat(auto-fill, var(--card-witdh));
-  justify-items: center;
   padding: 1em;
+  margin: var(--header-height) 0 var(--footer-height) 0;
 }
 
-.aside {
-  grid-area: aside;
-  /* background-color: magenta; */
-  height: 100%;
+#aside {
+  background: linear-gradient(
+    rgb(var(--secondary-color)),
+    rgb(var(--main-color))
+  );
+  width: var(--menu-width);
+  border-radius: 0 2rem 2rem 0;
   padding: 1rem;
   font-family: Peas;
   font-size: 1.5em;
+  position: fixed;
+  top: calc(var(--header-height) + 30px);
+  left: calc(-1 * var(--menu-width));
+  border-width: 5px 5px 5px 0;
+  border-style: solid;
+  border-color: black;
+}
+
+#close-button,
+#menu-button {
+  width: 20px;
+  height: auto;
+}
+
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#aside.hidden {
+  transform: translatex(-var(--menu-width));
+  transition: transform 0.4s ease-in-out;
+}
+
+#aside:not(.hidden) {
+  transform: translatex(var(--menu-width));
+  transition: transform 0.4s ease-in-out;
+}
+
+#close-button:hover,
+#menu-button:hover {
+  cursor: pointer;
 }
 
 #sort-and-filter {
@@ -64,8 +104,10 @@ body {
 }
 
 fieldset {
-  /* margin-bottom: 1rem; */
-  background: rgba(162, 210, 255, 0.4);
+  background: linear-gradient(
+    rgb(var(--main-color)),
+    rgb(var(--secondary-color))
+  );
   padding: 0.2rem;
   margin: 0 auto;
   border: 5px solid black;
@@ -77,28 +119,27 @@ h2 {
 }
 
 .footer {
-  grid-area: footer;
-  width: 100%;
-  /* height: 50px; */
-  /* background-color: green; */
-  /* position: fixed;
-  bottom: 0px; */
+  width: 100vw;
+  height: var(--footer-height);
+  background: rgba(rgb(var(--main-color)), 0.8);
+  border-top: 1px solid black;
+  text-align: center;
+  position: fixed;
+  bottom: 0px;
+  font-family: Peas;
+  vertical-align: center;
 }
 
 .card {
   width: var(--card-witdh);
   height: var(--card-height);
-  border: 1px solid black;
+  border: 2px solid black;
   display: grid;
   grid-template-rows: 3fr 2fr;
-
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  /* border: 1px solid rgba(255, 255, 255, 0.8); */
 }
 
 .card-top {
@@ -107,22 +148,18 @@ h2 {
   position: relative;
   display: flex;
   justify-content: space-between;
-  background-color: rgba(189, 224, 254, 0.3);
-  /* justify-content: space-evenly; */
+  background-color: rgba(var(--main-color), 0.6);
   border-radius: 1rem 1rem 0 0;
   padding: 1rem;
 }
-/* .card-name {
-} */
 .card-image {
   border-radius: 1rem;
   border: 1px solid black;
-  /* box-shadow: 5px 5px 5px black; */
 }
 .card-bottom {
   font-family: Peas;
   font-size: 20px;
-  background: rgba(162, 210, 255, 0.4);
+  background: rgba(var(--secondary-color), 0.6);
   border-radius: 0 0 1rem 1rem;
   padding-left: 1rem;
   border-top: 1px solid black;
@@ -130,10 +167,6 @@ h2 {
   flex-direction: column;
   justify-content: space-evenly;
 }
-/* .card-phone {
-}
-.card-email {
-} */
 
 .icon {
   width: 1.5em;
@@ -149,7 +182,6 @@ h2 {
 
 .title-and-name,
 .pic-and-age {
-  /* padding: 1em; */
   display: flex;
   flex-direction: column;
   justify-content: center;

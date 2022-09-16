@@ -1,4 +1,8 @@
-import { handleFormChange } from './listeners.js';
+import {
+  handleFormChange,
+  handleCloseButtonClick,
+  handleMenuButtonClick,
+} from './eventHandlers.js';
 
 const cardsWrapper = document.getElementById('cards-wrapper');
 
@@ -7,7 +11,7 @@ const renderCards = (arr) => {
     const { title, first, last } = item.name;
     const picture = item.picture.medium;
     const age = item.dob.age;
-    const gender = item.gender;
+    const { gender, cell, email } = item;
     cardsWrapper.insertAdjacentHTML(
       'beforeend',
       `<div class='card' data-gender="${gender}">
@@ -28,11 +32,11 @@ const renderCards = (arr) => {
   <div class='card-bottom'>
     <div class='card-phone'>
       <img class='icon' src='./img/phone.svg' alt='phone icon' />
-      <span>21796233</span>
+      <span>${cell}</span>
     </div>
     <div class='card-email'>
       <img class='icon' src='./img/mail.svg' alt='email icon' />
-      <span>asta.nielsen@example.com</span>
+      <span> ${email}</span>
     </div>
   </div>
 </div>`
@@ -44,7 +48,7 @@ const fetchPeople = async () => {
   let data;
   try {
     const response = await fetch(
-      'https://randomuser.me/api/?results=50&inc=gender,name,phone,dob,email,picture&noinfo'
+      'https://randomuser.me/api/?results=50&inc=gender,name,cell,dob,email,picture&noinfo'
     );
     data = await response.json();
   } catch (error) {
@@ -59,6 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .getElementById('sort-and-filter')
     .addEventListener('change', handleFormChange);
+  // document
+  //   .getElementById('close-button')
+  //   .addEventListener('click', handleCloseButtonClick);
+  document
+    .getElementById('menu-button')
+    .addEventListener('click', handleMenuButtonClick);
 });
 
 // fetchPeople();
