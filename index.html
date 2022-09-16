@@ -5,9 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    <script type="module" src="./js/defaultResults.js" defer></script>
-    <script type="module" src="./js/app.js" defer></script>
     <title>Friends App</title>
   </head>
-  <body></body>
+  <body>
+    <header class="header"><h1 class="title">Friends App</h1></header>
+    <main id="cards-wrapper"></main>
+    <aside class="aside">
+      <form id="sort-and-filter">
+        <h2>Filter:</h2>
+        <fieldset>
+          <legend>By gender:</legend>
+          <label for="all">All</label>
+          <input type="radio" name="gender" id="all" />
+          <label for="male">Male</label>
+          <input type="radio" name="gender" id="male" />
+          <label for="female">Female</label>
+          <input type="radio" name="gender" id="female" />
+        </fieldset>
+        <fieldset>
+          <legend>By age:</legend>
+          <label for="from">From:</label>
+          <input type="number" name="from" id="from" />
+          <br />
+          <label for="to"> To:</label><input type="number" name="to" id="to" />
+        </fieldset>
+        <fieldset>
+          <legend>By name:</legend>
+          <input type="text" placeholder="Enter your prompt..." />
+        </fieldset>
+        <h2>Sort:</h2>
+        <fieldset>
+          <legend>By name:</legend>
+          <label for="ascending-name">Ascending</label>
+          <input type="radio" name="sort-by-name" id="ascending-name" />
+          <br />
+          <label for="descending-name">Descending</label>
+          <input type="radio" name="sort-by-name" id="descending-name" />
+        </fieldset>
+        <fieldset>
+          <legend>By age:</legend>
+          <label for="ascending-age">Ascending</label>
+          <input type="radio" name="sort-by-age" id="ascending-age" />
+          <br />
+          <label for="descending-age">Descending</label>
+          <input type="radio" name="sort-by-age" id="descending-age" />
+        </fieldset>
+      </form>
+    </aside>
+    <footer class="footer">Made by Bohdan Mukha for Kottans</footer>
+    <script type="module" src="./js/defaultResults.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
 </html>
