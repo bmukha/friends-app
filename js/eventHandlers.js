@@ -1,9 +1,6 @@
 export const handleFormChange = (event) => {
+  event.preventDefault();
   console.log(event.target);
-};
-
-export const handleCloseButtonClick = () => {
-  document.getElementById('aside').classList.add('hidden');
 };
 
 export const handleMenuButtonClick = ({ target }) => {
@@ -11,3 +8,6 @@ export const handleMenuButtonClick = ({ target }) => {
   console.log(target.src);
   document.getElementById('aside').classList.toggle('hidden');
 };
+
+// TODO temporary
+// export outlineToggler = (item) => if

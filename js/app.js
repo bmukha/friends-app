@@ -1,8 +1,4 @@
-import {
-  handleFormChange,
-  handleCloseButtonClick,
-  handleMenuButtonClick,
-} from './eventHandlers.js';
+import { handleFormChange, handleMenuButtonClick } from './eventHandlers.js';
 
 const cardsWrapper = document.getElementById('cards-wrapper');
 
@@ -32,11 +28,11 @@ const renderCards = (arr) => {
   <div class='card-bottom'>
     <div class='card-phone'>
       <img class='icon' src='./img/phone.svg' alt='phone icon' />
-      <span>${cell}</span>
+      <span>&nbsp;${cell}</span>
     </div>
     <div class='card-email'>
-      <img class='icon' src='./img/mail.svg' alt='email icon' />
-      <span> ${email}</span>
+      <img class='icon' src='./img/email.svg' alt='email icon' />
+      <span>&nbsp;${email}</span>
     </div>
   </div>
 </div>`
@@ -48,7 +44,7 @@ const fetchPeople = async () => {
   let data;
   try {
     const response = await fetch(
-      'https://randomuser.me/api/?results=50&inc=gender,name,cell,dob,email,picture&noinfo'
+      'https://randomuser.me/api/?results=60&inc=gender,name,cell,dob,email,picture&noinfo'
     );
     data = await response.json();
   } catch (error) {
@@ -62,14 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchPeople();
   document
     .getElementById('sort-and-filter')
-    .addEventListener('change', handleFormChange);
-  // document
-  //   .getElementById('close-button')
-  //   .addEventListener('click', handleCloseButtonClick);
+    .addEventListener('click', handleFormChange);
   document
     .getElementById('menu-button')
     .addEventListener('click', handleMenuButtonClick);
+  const buttons = Array.from(document.getElementsByTagName('button'));
+  buttons.forEach((button) =>
+    button.addEventListener('click', (event) => {
+      console.log("I'm button!");
+      console.log(event.target);
+    })
+  );
 });
-
-// fetchPeople();
-// console.log(defaultResults.results);

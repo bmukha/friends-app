@@ -14,33 +14,27 @@
     </header>
     <main id="cards-wrapper"></main>
     <aside id="aside" class="hidden">
-      <!-- <img src="./img/xmark-solid.svg" alt="" id="close-button" /> -->
       <form id="sort-and-filter">
         <h2>Filter:</h2>
         <fieldset>
           <legend>By gender:</legend>
-          <div>
-            <label for="all">All</label>
-            <input type="radio" name="gender" id="all" />
-          </div>
-          <div>
-            <label for="male">Male</label>
-            <input type="radio" name="gender" id="male" />
-          </div>
-          <div>
-            <label for="female">Female</label>
-            <input type="radio" name="gender" id="female" />
-          </div>
+          <button class="gender">
+            <img
+              src="./img/male&female.svg"
+              alt=""
+              class="male-female"
+            /></button
+          ><button class="gender">
+            <img src="./img/male.svg" alt="" class="male-female" /></button
+          ><button class="gender">
+            <img src="./img/female.svg" alt="" class="male-female" />
+          </button>
         </fieldset>
         <fieldset>
           <legend>By age:</legend>
-          <div>
-            <label for="from">From:</label
-            ><input type="number" name="from" id="from" />
-          </div>
-          <div>
-            <label for="to">To:</label><input type="number" name="to" id="to" />
-          </div>
+          <label for="from">From:</label
+          ><input type="number" name="from" id="from" />
+          <label for="to">To:</label><input type="number" name="to" id="to" />
         </fieldset>
         <fieldset>
           <legend>By name:</legend>
@@ -49,25 +43,19 @@
         <h2>Sort:</h2>
         <fieldset>
           <legend>By name:</legend>
-          <div>
-            <label for="ascending-name">Ascending</label>
-            <input type="radio" name="sort-by-name" id="ascending-name" />
-          </div>
-          <div>
-            <label for="descending-name">Descending</label>
-            <input type="radio" name="sort-by-name" id="descending-name" />
-          </div>
+          <button class="name">
+            <img src="./img/a-z.svg" alt="" class="name-sort" /></button
+          ><button class="name">
+            <img src="./img/z-a.svg" alt="" class="name-sort" />
+          </button>
         </fieldset>
         <fieldset>
           <legend>By age:</legend>
-          <div>
-            <label for="ascending-age">Ascending</label>
-            <input type="radio" name="sort-by-age" id="ascending-age" />
-          </div>
-          <div>
-            <label for="descending-age">Descending</label>
-            <input type="radio" name="sort-by-age" id="descending-age" />
-          </div>
+          <button class="age">
+            <img src="./img/1-9.svg" alt="" class="age-sort" /></button
+          ><button class="age">
+            <img src="./img/9-1.svg" alt="" class="age-sort" />
+          </button>
         </fieldset>
       </form>
     </aside>
