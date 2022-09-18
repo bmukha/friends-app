@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/spinner.css" />
     <title>Friends App</title>
   </head>
   <body>
@@ -12,28 +13,29 @@
       <img src="./img/bars-solid.svg" alt="" id="menu-button" />
       <h1 class="title">Friends App</h1>
     </header>
-    <main id="cards-wrapper"></main>
+    <main id="content"></main>
     <aside id="aside" class="hidden">
       <form id="sort-and-filter">
         <h2>Filter:</h2>
         <fieldset>
           <legend>By gender:</legend>
-          <button class="gender">
+          <button class="gender is-pressed" data-gender-filter="all">
             <img
               src="./img/male&female.svg"
               alt=""
               class="male-female"
+              data-gender-filter="all"
             /></button
-          ><button class="gender">
+          ><button class="gender" data-gender-filter="male">
             <img src="./img/male.svg" alt="" class="male-female" /></button
-          ><button class="gender">
+          ><button class="gender" data-gender-filter="male">
             <img src="./img/female.svg" alt="" class="male-female" />
           </button>
         </fieldset>
         <fieldset>
           <legend>By age:</legend>
           <label for="from">From:</label
-          ><input type="number" name="from" id="from" />
+          ><input type="number" name="from" id="from" min="0" />
           <label for="to">To:</label><input type="number" name="to" id="to" />
         </fieldset>
         <fieldset>

@@ -18,6 +18,8 @@
   --footer-height: 20px;
   --main-color: 45, 106, 79;
   --secondary-color: 173, 216, 230;
+  /* --main-color: 0, 0, 0;
+  --secondary-color: 255, 255, 255; */
   --menu-width: 252px;
   --main-font: Devroye;
   --secondary-font: Peas;
@@ -28,6 +30,15 @@ body {
     rgb(var(--main-color)),
     rgb(var(--secondary-color))
   );
+  min-height: 100vh;
+}
+
+#content {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header {
@@ -221,6 +232,13 @@ input[type='number'] {
 
 input {
   border-radius: 5px;
+  text-align: center;
   font-family: var(--secondary-font);
   font-size: 1.2rem;
+}
+
+.is-pressed {
+  /* outline: none; */
+  border-color: #f58467;
+  box-shadow: 0 0 10px #f58467;
 }
