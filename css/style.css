@@ -221,4 +221,6 @@ input[type='number'] {
 
 input {
   border-radius: 5px;
+  font-family: var(--secondary-font);
+  font-size: 1.2rem;
 }
