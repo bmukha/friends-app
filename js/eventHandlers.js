@@ -48,3 +48,10 @@ export const handleFilterByGenderButtonClick = (event) => {
 export const handleSortButtonClick = (event) => {
   handleGroupOfButtons(event, 'sort-button');
 };
+
+export const handleNameInputChange = (event) => {
+  // console.log(event.target.value);
+  state.filter.name = event.target.value;
+  state.prepareArrayToRender();
+  renderCards(state.arrayToRender);
+};

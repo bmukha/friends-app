@@ -2,6 +2,7 @@ import {
   handleMenuButtonClick,
   handleFilterByGenderButtonClick,
   handleSortButtonClick,
+  handleNameInputChange,
 } from './eventHandlers.js';
 
 import { renderCards, renderSpinner } from './renderers.js';
@@ -100,4 +101,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   document
     .getElementById('menu-button')
     .addEventListener('click', handleMenuButtonClick);
+
+  document.querySelector('#name-input').addEventListener('change', (event) => {
+    console.log('Name changed!');
+    handleNameInputChange(event);
+  });
 });
