@@ -1,11 +1,6 @@
 import { renderCards, renderSpinner } from './renderers.js';
 import { state } from './app.js';
 
-export const handleFormChange = (event) => {
-  event.preventDefault();
-  console.log("I'm form change event");
-};
-
 export const handleOnClickEvent = () => {
   // event.preventDefault();
   console.log("I'm oninput event");

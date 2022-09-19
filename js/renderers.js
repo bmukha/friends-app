@@ -45,7 +45,6 @@ export const renderCards = async (arr) => {
 </div>`
     );
   });
-  console.log(cardsWrapper);
   content.innerHTML = '';
   content.appendChild(cardsWrapper);
 };

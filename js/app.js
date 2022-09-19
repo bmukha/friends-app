@@ -1,5 +1,4 @@
 import {
-  handleFormChange,
   handleMenuButtonClick,
   handleFilterByGenderButtonClick,
   handleOnClickEvent,
@@ -81,14 +80,10 @@ export const state = {
 document.addEventListener('DOMContentLoaded', async () => {
   renderSpinner();
   state.initialArray = await fetchPeople();
-  console.log(state);
   renderCards(state.initialArray);
   document
     .getElementById('sort-and-filter')
-    .addEventListener('click', handleFormChange);
-  document
-    .getElementById('sort-and-filter')
-    .addEventListener('oninput', handleOnClickEvent);
+    .addEventListener('input', handleOnClickEvent);
   document
     .getElementById('menu-button')
     .addEventListener('click', handleMenuButtonClick);
