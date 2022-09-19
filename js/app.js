@@ -1,7 +1,7 @@
 import {
   handleMenuButtonClick,
   handleFilterByGenderButtonClick,
-  handleOnClickEvent,
+  handleMenuButtonClickEvent,
 } from './eventHandlers.js';
 
 import { renderCards, renderSpinner } from './renderers.js';
@@ -11,13 +11,13 @@ import { fetchPeople } from './fetchPeople.js';
 export const state = {
   initialArray: [],
   arrayToRender: [],
-  filters: {
+  filter: {
     gender: 'all',
     ageMin: 0,
     ageMax: 200,
     name: '',
   },
-  sort: null,
+  sort: 'random',
   filterByGender() {
     if (this.gender === 'all') {
       if (!this.arrayToRender.length) {
@@ -82,8 +82,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   state.initialArray = await fetchPeople();
   renderCards(state.initialArray);
   document
-    .getElementById('sort-and-filter')
-    .addEventListener('input', handleOnClickEvent);
+    .querySelectorAll('.filter-gender-button')
+    .forEach((button) =>
+      button.addEventListener('click', handleFilterByGenderButtonClick)
+    );
+
   document
     .getElementById('menu-button')
     .addEventListener('click', handleMenuButtonClick);

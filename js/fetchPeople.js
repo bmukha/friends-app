@@ -22,6 +22,5 @@ export const fetchPeople = async () => {
   } catch (error) {
     console.log(error);
   }
-  console.log(peopleArray);
   return peopleArray;
 };

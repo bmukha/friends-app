@@ -1,32 +1,49 @@
 import { renderCards, renderSpinner } from './renderers.js';
 import { state } from './app.js';
 
-export const handleOnClickEvent = () => {
-  // event.preventDefault();
-  console.log("I'm oninput event");
+export const handleMenuButtonClickEvent = ({ target }) => {
+  console.log(target.parentElement);
+  if (target.type !== 'button' && target.parentElement.type !== 'button')
+    return;
+  const newTarget = target.type === 'button' ? target : target.parentElement;
+  console.log(newTarget);
 };
 
 export const handleMenuButtonClick = () => {
   document.getElementById('aside').classList.toggle('hidden');
 };
 
-export const handleFilterByGenderButtonClick = (event) => {
-  console.log(state);
-  const element =
-    event.target.tagName === 'IMG' ? event.target.parentElement : event.target;
-  console.log(element.dataset.filterGender);
-  if (element.classList.contains('is-pressed')) return;
-  const sameBbuttons = Array.from(document.getElementsByClassName('gender'));
-  sameBbuttons.forEach((button) => {
+const toggleFocusOfGroupOfButtons = (element, buttonClass) => {
+  document.querySelectorAll(`.${buttonClass}`).forEach((button) => {
     if (element === button) {
       button.classList.add('is-pressed');
     } else {
       button.classList.remove('is-pressed');
     }
   });
-  state.filters.gender = element.dataset.filterGender;
-  state.prepareArrayToRender();
-  renderCards(state.arrayToRender);
-  console.log('state is:');
+};
+
+const handleGroupOfButtons = (event, buttonClass) => {
+  const element =
+    event.target.tagName === 'IMG' ? event.target.parentElement : event.target;
+  if (element.classList.contains('is-pressed')) return;
+  toggleFocusOfGroupOfButtons(element, buttonClass);
+  console.log(element.dataset.type);
+  const value = element.dataset.type.split(' ');
+  if (value[0] === 'filter') {
+    state.filter[value[1]] = value[2];
+  }
+  if (value[0] === 'sort') {
+    state.sort = [value[1]];
+  }
   console.log(state);
+  // state.filters.gender = element.dataset.filterGender;
+  // state.prepareArrayToRender();
+  // renderCards(state.arrayToRender);
+  // console.log('state is:');
+  // console.log(state);
+};
+
+export const handleFilterByGenderButtonClick = (event) => {
+  handleGroupOfButtons(event, 'filter-gender-button');
 };
