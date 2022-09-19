@@ -182,9 +182,7 @@ h2 {
 } */
 
 .filter-gender-button,
-.sort-name-button,
-.sort-age-button,
-.sort-random-button {
+.sort-button {
   width: 50px;
   height: 50px;
   background: linear-gradient(
@@ -197,9 +195,7 @@ h2 {
 }
 
 .filter-gender-button-icon,
-.sort-name-button-icon,
-.sort-age-button-icon,
-.sort-random-button-icon {
+.sort-button-icon {
   width: auto;
   height: 1.5em;
 }

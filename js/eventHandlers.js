@@ -34,16 +34,17 @@ const handleGroupOfButtons = (event, buttonClass) => {
     state.filter[value[1]] = value[2];
   }
   if (value[0] === 'sort') {
-    state.sort = [value[1]];
+    state.sort = value[1];
   }
   console.log(state);
-  // state.filters.gender = element.dataset.filterGender;
-  // state.prepareArrayToRender();
-  // renderCards(state.arrayToRender);
-  // console.log('state is:');
-  // console.log(state);
+  state.prepareArrayToRender();
+  renderCards(state.arrayToRender);
 };
 
 export const handleFilterByGenderButtonClick = (event) => {
   handleGroupOfButtons(event, 'filter-gender-button');
+};
+
+export const handleSortButtonClick = (event) => {
+  handleGroupOfButtons(event, 'sort-button');
 };
