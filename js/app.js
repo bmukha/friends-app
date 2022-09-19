@@ -2,13 +2,14 @@ import {
   handleFormChange,
   handleMenuButtonClick,
   handleFilterByGenderButtonClick,
+  handleOnClickEvent,
 } from './eventHandlers.js';
 
 import { renderCards, renderSpinner } from './renderers.js';
 
 import { fetchPeople } from './fetchPeople.js';
 
-const state = {
+export const state = {
   initialArray: [],
   arrayToRender: [],
   filters: {
@@ -19,26 +20,33 @@ const state = {
   },
   sort: null,
   filterByGender() {
-    if (this.gender === 'all') this.arrayToRender = [...this.initialArray];
+    if (this.gender === 'all') {
+      if (!this.arrayToRender.length) {
+        this.arrayToRender = [...this.initialArray];
+      }
+      return;
+    }
     this.arrayToRender = this.initialArray.filter(
       (item) => item.gender === this.filters.gender
     );
+    console.log(`filtered by gender value ${this.filters.gender}`);
   },
   filterByAge() {
-    this.initialArray = this.initialArray.filter(
+    this.arrayToRender = this.arrayToRender.filter(
       (item) =>
         item.dob.age >= this.filters.ageMin &&
         item.dob.age <= this.filters.ageMax
     );
+    return this.arrayToRender;
   },
   filterByName() {
-    if (this.filters.name === '') return;
-    this.initialArray = this.initialArray.filter((item) =>
+    if (this.filters.name === '') return this.arrayToRender;
+    this.arrayToRender = this.arrayToRender.filter((item) =>
       `${item.name.first} ${item.name.last}`.includes(this.filters.name)
     );
   },
   sort() {
-    if (this.sort === null) return;
+    if (this.sort === null) return this.arrayToRender;
     switch (this.sort) {
       case 'name-ascending':
         this.arrayToRender = this.arrayToRender.sort((item1, item2) =>
@@ -63,8 +71,10 @@ const state = {
     }
   },
   prepareArrayToRender() {
-    //TODO write filter and sort
-    console.log('first');
+    this.filterByGender();
+    // this.filterByAge();
+    // this.filterByName();
+    // this.sort();
   },
 };
 
@@ -72,10 +82,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderSpinner();
   state.initialArray = await fetchPeople();
   console.log(state);
-  renderCards(state.arrayToRender);
+  renderCards(state.initialArray);
   document
     .getElementById('sort-and-filter')
     .addEventListener('click', handleFormChange);
+  document
+    .getElementById('sort-and-filter')
+    .addEventListener('oninput', handleOnClickEvent);
   document
     .getElementById('menu-button')
     .addEventListener('click', handleMenuButtonClick);

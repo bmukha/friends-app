@@ -1,18 +1,25 @@
+import { renderCards, renderSpinner } from './renderers.js';
+import { state } from './app.js';
+
 export const handleFormChange = (event) => {
   event.preventDefault();
-  // console.log(event.target);
+  console.log("I'm form change event");
 };
 
-export const handleMenuButtonClick = ({ target }) => {
-  // TODO delete target
-  // console.log(target.src);
+export const handleOnClickEvent = () => {
+  // event.preventDefault();
+  console.log("I'm oninput event");
+};
+
+export const handleMenuButtonClick = () => {
   document.getElementById('aside').classList.toggle('hidden');
 };
 
 export const handleFilterByGenderButtonClick = (event) => {
+  console.log(state);
   const element =
     event.target.tagName === 'IMG' ? event.target.parentElement : event.target;
-  console.log(element.dataset);
+  console.log(element.dataset.filterGender);
   if (element.classList.contains('is-pressed')) return;
   const sameBbuttons = Array.from(document.getElementsByClassName('gender'));
   sameBbuttons.forEach((button) => {
@@ -22,4 +29,9 @@ export const handleFilterByGenderButtonClick = (event) => {
       button.classList.remove('is-pressed');
     }
   });
+  state.filters.gender = element.dataset.filterGender;
+  state.prepareArrayToRender();
+  renderCards(state.arrayToRender);
+  console.log('state is:');
+  console.log(state);
 };

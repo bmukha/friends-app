@@ -10,23 +10,18 @@ export const renderSpinner = () => {
       </div>`;
 };
 
-// <div id='cards-wrapper'></div>;
-
 export const renderCards = async (arr) => {
   const cardsWrapper = document.createElement('div');
   cardsWrapper.id = 'cards-wrapper';
   arr.forEach((item) => {
-    const { title, first, last } = item.name;
-    const picture = item.picture.medium;
-    const age = item.dob.age;
-    const { gender, cell, email } = item;
+    const { age, gender, email, title, name, picture, phone } = item;
     cardsWrapper.insertAdjacentHTML(
       'beforeend',
       `<div class='card' data-gender="${gender}">
   <div class='card-top'>
     <div class="title-and-name">
       <span class='card-title'>${title}.</span>
-      <span class='card-name'>${first} ${last}</span>
+      <span class='card-name'>${name}</span>
     </div>
     <div class="pic-and-age">  
       <img
@@ -40,7 +35,7 @@ export const renderCards = async (arr) => {
   <div class='card-bottom'>
     <div class='card-phone'>
       <img class='icon' src='./img/phone.svg' alt='phone icon' />
-      <span>&nbsp;${cell}</span>
+      <span>&nbsp;${phone}</span>
     </div>
     <div class='card-email'>
       <img class='icon' src='./img/email.svg' alt='email icon' />
