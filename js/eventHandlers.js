@@ -10,6 +10,7 @@ import { state } from './app.js';
 // };
 
 export const handleMenuButtonClick = ({ target }) => {
+  console.log(target.src);
   target.src.includes('bars-solid.svg')
     ? target.setAttribute('src', '/img/xmark-solid.svg')
     : target.setAttribute('src', '/img/bars-solid.svg');
