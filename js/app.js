@@ -3,6 +3,10 @@ import {
   handleFilterByGenderButtonClick,
   handleSortButtonClick,
   handleNameInputChange,
+  handleMinAgeInput,
+  handleMaxAgeInput,
+  handleMinAgeInvalidInput,
+  handleMaxAgeInvalidInput,
 } from './eventHandlers.js';
 
 import { renderCards, renderSpinner } from './renderers.js';
@@ -12,10 +16,12 @@ import { fetchPeople } from './fetchPeople.js';
 export const state = {
   initialArray: [],
   arrayToRender: [],
+  minPossibleAge: undefined,
+  maxPossibleAge: undefined,
   filter: {
     gender: 'all',
-    ageMin: 0,
-    ageMax: 200,
+    minAge: undefined,
+    maxAge: undefined,
     name: '',
   },
   sort: 'random',
@@ -30,10 +36,10 @@ export const state = {
   },
   filterByAge(array) {
     console.log(
-      `filtered by age value ${this.filter.ageMin} < value < ${this.filter.ageMax}`
+      `filtered by age value ${this.filter.minAge} < value < ${this.filter.maxAge}`
     );
     const done = array.filter(
-      (item) => item.age >= this.filter.ageMin && item.age <= this.filter.ageMax
+      (item) => item.age >= this.filter.minAge && item.age <= this.filter.maxAge
     );
     console.log(done);
     return done;
@@ -83,9 +89,36 @@ export const state = {
   },
 };
 
+const setMinAndMaxAgeInStackFromArrayOfPeople = (array) => {
+  state.filter.maxAge = state.filter.minAge = array[0].age;
+  for (let i = 1; i < array.length; i++) {
+    if (array[i].age < state.filter.minAge) {
+      state.filter.minAge = array[i].age;
+      continue;
+    }
+    if (array[i].age > state.filter.maxAge) {
+      state.filter.maxAge = array[i].age;
+    }
+  }
+};
+
+const setMinAndMaxValuesInFilterFields = () => {
+  const minAgeField = document.getElementById('min-age-input');
+  const maxAgeField = document.getElementById('max-age-input');
+  minAgeField.setAttribute('max', state.filter.maxAge);
+  minAgeField.setAttribute('value', state.filter.minAge);
+  minAgeField.setAttribute('min', state.filter.minAge);
+  maxAgeField.setAttribute('min', state.filter.minAge);
+  maxAgeField.setAttribute('value', state.filter.maxAge);
+  maxAgeField.setAttribute('max', state.filter.maxAge);
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
   renderSpinner();
   state.initialArray = await fetchPeople();
+  setMinAndMaxAgeInStackFromArrayOfPeople(state.initialArray);
+  setMinAndMaxValuesInFilterFields();
+  console.log(state);
   renderCards(state.initialArray);
   document
     .querySelectorAll('.filter-gender-button')
@@ -102,8 +135,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     .getElementById('menu-button')
     .addEventListener('click', handleMenuButtonClick);
 
-  document.querySelector('#name-input').addEventListener('change', (event) => {
+  document.querySelector('#name-input').addEventListener('input', (event) => {
     console.log('Name changed!');
     handleNameInputChange(event);
   });
+
+  document
+    .getElementById('min-age-input')
+    .addEventListener('input', handleMinAgeInput);
+
+  document
+    .getElementById('min-age-input')
+    .addEventListener('invalid', handleMinAgeInvalidInput);
+
+  document
+    .getElementById('max-age-input')
+    .addEventListener('input', handleMaxAgeInput);
+
+  document
+    .getElementById('max-age-input')
+    .addEventListener('invalid', handleMaxAgeInvalidInput);
 });

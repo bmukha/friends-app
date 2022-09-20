@@ -13,11 +13,17 @@ export const renderSpinner = () => {
 export const renderCards = async (arr) => {
   const cardsWrapper = document.createElement('div');
   cardsWrapper.id = 'cards-wrapper';
-  arr.forEach((item) => {
-    const { age, gender, email, title, name, picture, phone } = item;
+  if (!arr.length) {
     cardsWrapper.insertAdjacentHTML(
       'beforeend',
-      `<div class='card' data-gender="${gender}">
+      `<p class="nobody-message">Ooops!!! It look like you filtered out everyone!</p>`
+    );
+  } else {
+    arr.forEach((item) => {
+      const { age, gender, email, title, name, picture, phone } = item;
+      cardsWrapper.insertAdjacentHTML(
+        'beforeend',
+        `<div class='card' data-gender="${gender}">
   <div class='card-top'>
     <div class="title-and-name">
       <span class='card-title'>${title}.</span>
@@ -43,8 +49,9 @@ export const renderCards = async (arr) => {
     </div>
   </div>
 </div>`
-    );
-  });
+      );
+    });
+  }
   content.innerHTML = '';
   content.appendChild(cardsWrapper);
 };

@@ -1,4 +1,4 @@
-import { renderCards, renderSpinner } from './renderers.js';
+import { renderCards } from './renderers.js';
 import { state } from './app.js';
 
 export const handleMenuButtonClickEvent = ({ target }) => {
@@ -52,6 +52,38 @@ export const handleSortButtonClick = (event) => {
 export const handleNameInputChange = (event) => {
   // console.log(event.target.value);
   state.filter.name = event.target.value;
+  state.prepareArrayToRender();
+  renderCards(state.arrayToRender);
+};
+
+export const handleMinAgeInput = (event) => {
+  document
+    .getElementById('max-age-input')
+    .setAttribute('min', event.target.value);
+  state.filter.minAge = event.target.value;
+  state.prepareArrayToRender();
+  renderCards(state.arrayToRender);
+};
+
+export const handleMaxAgeInput = (event) => {
+  document
+    .getElementById('min-age-input')
+    .setAttribute('max', event.target.value);
+  state.filter.maxAge = event.target.value;
+  state.prepareArrayToRender();
+  renderCards(state.arrayToRender);
+};
+
+export const handleMinAgeInvalidInput = (event) => {
+  console.log('invalid min value');
+  event.target.value = event.target.min;
+  state.prepareArrayToRender();
+  renderCards(state.arrayToRender);
+};
+
+export const handleMaxAgeInvalidInput = (event) => {
+  console.log('invalid max value');
+  event.target.value = event.target.max;
   state.prepareArrayToRender();
   renderCards(state.arrayToRender);
 };
