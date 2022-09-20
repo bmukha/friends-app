@@ -1,15 +1,18 @@
 import { renderCards } from './renderers.js';
 import { state } from './app.js';
 
-export const handleMenuButtonClickEvent = ({ target }) => {
-  // console.log(target.parentElement);
-  if (target.type !== 'button' && target.parentElement.type !== 'button')
-    return;
-  const newTarget = target.type === 'button' ? target : target.parentElement;
-  // console.log(newTarget);
-};
+// export const handleMenuButtonClickEvent = ({ target }) => {
+//   // console.log(target.parentElement);
+//   if (target.type !== 'button' && target.parentElement.type !== 'button')
+//     return;
+//   const newTarget = target.type === 'button' ? target : target.parentElement;
+//   // console.log(newTarget);
+// };
 
-export const handleMenuButtonClick = () => {
+export const handleMenuButtonClick = ({ target }) => {
+  target.src.includes('bars-solid.svg')
+    ? target.setAttribute('src', '../img/xmark-solid.svg')
+    : target.setAttribute('src', '../img/bars-solid.svg');
   document.getElementById('aside').classList.toggle('hidden');
 };
 
