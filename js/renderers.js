@@ -16,7 +16,7 @@ export const renderCards = async (arr) => {
   if (!arr.length) {
     cardsWrapper.insertAdjacentHTML(
       'beforeend',
-      `<p class="nobody-message">Ooops!!! It look like you filtered out everyone!</p>`
+      `<p class="nobody-message">Ooops!!! It looks like you filtered out everyone!</p>`
     );
   } else {
     arr.forEach((item) => {
