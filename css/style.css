@@ -240,6 +240,10 @@ input {
   font-size: 1.2rem;
 }
 
+input:invalid {
+  outline: 2px solid red;
+}
+
 .is-pressed {
   /* outline: none; */
   border-color: #f58467;

@@ -5,8 +5,8 @@ import {
   handleNameInputChange,
   handleMinAgeInput,
   handleMaxAgeInput,
-  handleMinAgeInvalidInput,
-  handleMaxAgeInvalidInput,
+  // handleMinAgeInvalidInput,
+  // handleMaxAgeInvalidInput,
 } from './eventHandlers.js';
 
 import { renderCards, renderSpinner } from './renderers.js';
@@ -27,33 +27,33 @@ export const state = {
   sort: 'random',
   filterByGender() {
     if (this.filter.gender === 'all') return [...this.initialArray];
-    console.log(`filtered by gender value ${this.filter.gender}`);
+    // console.log(`filtered by gender value ${this.filter.gender}`);
     const done = this.initialArray.filter(
       (item) => item.gender === this.filter.gender
     );
-    console.log(done);
+    // console.log(done);
     return done;
   },
   filterByAge(array) {
-    console.log(
-      `filtered by age value ${this.filter.minAge} < value < ${this.filter.maxAge}`
-    );
+    // console.log(
+    //   `filtered by age value ${this.filter.minAge} < value < ${this.filter.maxAge}`
+    // );
     const done = array.filter(
       (item) => item.age >= this.filter.minAge && item.age <= this.filter.maxAge
     );
-    console.log(done);
+    // console.log(done);
     return done;
   },
   filterByName(array) {
-    console.log(`filtered by name value ${this.filter.name}`);
+    // console.log(`filtered by name value ${this.filter.name}`);
     const done = array.filter((item) =>
       item.name.toLowerCase().includes(this.filter.name.toLowerCase())
     );
-    console.log(done);
+    // console.log(done);
     return done;
   },
   sortBy(array) {
-    console.log(`sorted by value ${this.sort}`);
+    // console.log(`sorted by value ${this.sort}`);
     if (this.sort === 'random') return (this.arrayToRender = array);
     switch (this.sort) {
       case 'name-ascending':
@@ -77,7 +77,7 @@ export const state = {
         );
         break;
       default:
-        console.log(`Sorting failed! value of sorting is ${this.sort}`);
+        // console.log(`Sorting failed! value of sorting is ${this.sort}`);
         break;
     }
   },
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   state.initialArray = await fetchPeople();
   setMinAndMaxAgeInStackFromArrayOfPeople(state.initialArray);
   setMinAndMaxValuesInFilterFields();
-  console.log(state);
+  // console.log(state);
   renderCards(state.initialArray);
   document
     .querySelectorAll('.filter-gender-button')
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     .addEventListener('click', handleMenuButtonClick);
 
   document.querySelector('#name-input').addEventListener('input', (event) => {
-    console.log('Name changed!');
+    // console.log('Name changed!');
     handleNameInputChange(event);
   });
 
@@ -144,15 +144,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     .getElementById('min-age-input')
     .addEventListener('input', handleMinAgeInput);
 
-  document
-    .getElementById('min-age-input')
-    .addEventListener('invalid', handleMinAgeInvalidInput);
+  // document
+  //   .getElementById('min-age-input')
+  //   .addEventListener('invalid', handleMinAgeInvalidInput);
 
   document
     .getElementById('max-age-input')
     .addEventListener('input', handleMaxAgeInput);
 
-  document
-    .getElementById('max-age-input')
-    .addEventListener('invalid', handleMaxAgeInvalidInput);
+  // document
+  //   .getElementById('max-age-input')
+  //   .addEventListener('invalid', handleMaxAgeInvalidInput);
 });
