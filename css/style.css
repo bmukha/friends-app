@@ -1,11 +1,11 @@
 @font-face {
   font-family: Devroye;
-  src: url(/fonts/DEVROYE_.ttf);
+  src: url(../fonts/DEVROYE_.ttf);
 }
 
 @font-face {
   font-family: Peas;
-  src: url(/fonts/Yellow\ Peas\ Bold\ demo.ttf);
+  src: url(../fonts/Yellow\ Peas\ Bold\ demo.ttf);
 }
 
 * {
