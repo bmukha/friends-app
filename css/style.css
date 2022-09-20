@@ -79,7 +79,7 @@ body {
     rgb(var(--main-color))
   );
   border-radius: 0 2rem 2rem 0;
-  border-width: 5px 5px 5px 0;
+  border-width: 3px 3px 3px 0;
   border-style: solid;
   border-color: black;
   transition: transform 0.7s ease-in-out;
@@ -118,7 +118,7 @@ fieldset {
     rgb(var(--main-color)),
     rgb(var(--secondary-color))
   );
-  border: 5px solid black;
+  border: 3px solid black;
   border-radius: 10px;
   display: flex;
   justify-content: space-evenly;
