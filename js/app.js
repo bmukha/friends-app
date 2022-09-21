@@ -3,10 +3,7 @@ import {
   handleFilterByGenderButtonClick,
   handleSortButtonClick,
   handleNameInputChange,
-  handleMinAgeInput,
-  handleMaxAgeInput,
-  // handleMinAgeInvalidInput,
-  // handleMaxAgeInvalidInput,
+  handleMinAndMaxAgeInput,
 } from './eventHandlers.js';
 
 import { renderCards, renderSpinner } from './renderers.js';
@@ -89,7 +86,7 @@ export const state = {
   },
 };
 
-const setMinAndMaxAgeInStackFromArrayOfPeople = (array) => {
+const setMinAndMaxAgeInStateFromArrayOfPeople = (array) => {
   state.filter.maxAge = state.filter.minAge = array[0].age;
   for (let i = 1; i < array.length; i++) {
     if (array[i].age < state.filter.minAge) {
@@ -116,9 +113,8 @@ const setMinAndMaxValuesInFilterFields = () => {
 document.addEventListener('DOMContentLoaded', async () => {
   renderSpinner();
   state.initialArray = await fetchPeople();
-  setMinAndMaxAgeInStackFromArrayOfPeople(state.initialArray);
+  setMinAndMaxAgeInStateFromArrayOfPeople(state.initialArray);
   setMinAndMaxValuesInFilterFields();
-  // console.log(state);
   renderCards(state.initialArray);
   document
     .querySelectorAll('.filter-gender-button')
@@ -135,24 +131,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     .getElementById('menu-button')
     .addEventListener('click', handleMenuButtonClick);
 
-  document.querySelector('#name-input').addEventListener('input', (event) => {
-    // console.log('Name changed!');
+  document.getElementById('name-input').addEventListener('input', (event) => {
     handleNameInputChange(event);
   });
 
   document
-    .getElementById('min-age-input')
-    .addEventListener('input', handleMinAgeInput);
-
-  // document
-  //   .getElementById('min-age-input')
-  //   .addEventListener('invalid', handleMinAgeInvalidInput);
-
-  document
-    .getElementById('max-age-input')
-    .addEventListener('input', handleMaxAgeInput);
-
-  // document
-  //   .getElementById('max-age-input')
-  //   .addEventListener('invalid', handleMaxAgeInvalidInput);
+    .querySelectorAll('.age-input')
+    .forEach((element) =>
+      element.addEventListener('input', handleMinAndMaxAgeInput)
+    );
 });
