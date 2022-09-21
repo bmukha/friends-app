@@ -31,7 +31,6 @@ const handleGroupOfButtons = ({ target }, buttonClass) => {
   }
   state.prepareArrayToRender();
   renderCards(state.arrayToRender);
-  console.log(state);
 };
 
 export const handleFilterByGenderButtonClick = (target) => {
