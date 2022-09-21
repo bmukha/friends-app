@@ -15,66 +15,43 @@ export const state = {
   arrayToRender: [],
   filter: {
     gender: 'all',
-    minAge: undefined,
-    maxAge: undefined,
+    minAge: 0,
+    maxAge: 200,
     name: '',
   },
-  sort: 'random',
-  // filter() {},
-
-  filterByGender() {
-    if (this.filter.gender === 'all') return [...this.initialArray];
-    const done = this.initialArray.filter(
-      (item) => item.gender === this.filter.gender
-    );
-    return done;
-  },
-  filterByAge(array) {
-    const done = array.filter(
-      (item) => item.age >= this.filter.minAge && item.age <= this.filter.maxAge
-    );
-    return done;
-  },
-  filterByName(array) {
-    const done = array.filter((item) =>
-      item.name.toLowerCase().includes(this.filter.name.toLowerCase())
-    );
-    return done;
-  },
-  sortBy(array) {
-    if (this.sort === 'random') return (this.arrayToRender = array);
-    let sortingFunction;
-    switch (this.sort) {
-      case 'name-ascending':
-        sortingFunction = (item1, item2) =>
-          item1.name < item2.name ? -1 : item1.name === item2.name ? 0 : 1;
-        break;
-      case 'name-descending':
-        sortingFunction = (item1, item2) =>
-          item1.name > item2.name ? -1 : item1.name === item2.name ? 0 : 1;
-        break;
-      case 'age-ascending':
-        sortingFunction = (item1, item2) =>
-          +item1.age < +item2.age ? -1 : item1.age === item2.age ? 0 : 1;
-        break;
-      case 'age-descending':
-        sortingFunction = (item1, item2) =>
-          +item1.age > +item2.age ? -1 : item1.age === item2.age ? 0 : 1;
-        break;
-      default:
-        break;
-    }
-    this.arrayToRender = array.sort(sortingFunction);
-  },
+  sort: 'initial',
   prepareArrayToRender() {
-    const filteredByGender = this.filterByGender();
-    const filteredByAge = this.filterByAge(filteredByGender);
-    const filteredByName = this.filterByName(filteredByAge);
-    this.sortBy(filteredByName);
+    const genderOptions = {
+      all: ['male', 'female'],
+      male: ['male'],
+      female: ['female'],
+    };
+    const sortingOptions = {
+      initial: () => 0,
+      'name-ascending': (item1, item2) =>
+        item1.name < item2.name ? -1 : item1.name === item2.name ? 0 : 1,
+      'name-descending': (item1, item2) =>
+        item1.name > item2.name ? -1 : item1.name === item2.name ? 0 : 1,
+      'age-ascending': (item1, item2) =>
+        +item1.age < +item2.age ? -1 : item1.age === item2.age ? 0 : 1,
+      'age-descending': (item1, item2) =>
+        +item1.age > +item2.age ? -1 : item1.age === item2.age ? 0 : 1,
+    };
+
+    this.arrayToRender = this.initialArray
+      .filter((item) => {
+        return (
+          genderOptions[this.filter.gender].includes(item.gender) &&
+          item.age >= this.filter.minAge &&
+          item.age <= this.filter.maxAge &&
+          item.name.toLowerCase().includes(this.filter.name.toLowerCase())
+        );
+      })
+      .sort(sortingOptions[this.sort]);
   },
 };
 
-const getMinAndMaxAgeInStateFromArrayOfPeople = (array) => {
+const setMinAndMaxAgeInStateFromArrayOfPeople = (array) => {
   state.filter.maxAge = state.filter.minAge = array[0].age;
   for (let i = 1; i < array.length; i++) {
     if (array[i].age < state.filter.minAge) {
@@ -101,7 +78,7 @@ const setMinAndMaxValuesInFilterFields = () => {
 document.addEventListener('DOMContentLoaded', async () => {
   renderSpinner();
   state.initialArray = await fetchPeople();
-  getMinAndMaxAgeInStateFromArrayOfPeople(state.initialArray);
+  setMinAndMaxAgeInStateFromArrayOfPeople(state.initialArray);
   setMinAndMaxValuesInFilterFields();
   renderCards(state.initialArray);
   document
