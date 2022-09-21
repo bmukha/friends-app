@@ -23,7 +23,7 @@ export const renderCards = (arr) => {
       const { age, gender, email, title, name, picture, phone } = item;
       cardsWrapper.insertAdjacentHTML(
         'beforeend',
-        `<div class='card' data-gender="${gender}">
+        `<article class='card' data-gender="${gender}">
   <div class='card-top'>
     <div class="title-and-name">
       <span class='card-title'>${title}.</span>
@@ -41,14 +41,14 @@ export const renderCards = (arr) => {
   <div class='card-bottom'>
     <div class='card-phone'>
       <img class='icon' src='./img/phone.svg' alt='phone icon' />
-      <span>&nbsp;${phone}</span>
+      <a href="tel:${phone}">${phone}</a>
     </div>
     <div class='card-email'>
       <img class='icon' src='./img/email.svg' alt='email icon' />
-      <span>&nbsp;${email}</span>
+      <a href="mailto:${email}">${email}</a>  
     </div>
   </div>
-</div>`
+</article>`
       );
     });
   }

@@ -8,10 +8,7 @@
   src: url(../fonts/YellowPeasBold.ttf);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root {
   --card-witdh: 344px;
   --card-height: 216px;
   --header-height: 50px;
@@ -21,6 +18,12 @@
   --menu-width: 252px;
   --main-font: Devroye;
   --secondary-font: Peas;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
