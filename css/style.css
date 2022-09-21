@@ -115,10 +115,10 @@ fieldset {
   width: 100%;
   padding: 0.2rem;
   margin: 0.2rem;
-  background: linear-gradient(
+  /* background: linear-gradient(
     rgb(var(--main-color)),
     rgb(var(--secondary-color))
-  );
+  ); */
   border: 3px solid black;
   border-radius: 10px;
   display: flex;

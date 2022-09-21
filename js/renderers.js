@@ -32,7 +32,7 @@ export const renderCards = (arr) => {
     <div class="pic-and-age">  
       <img
       src=${picture}
-      alt=''
+      alt="photo of ${title} ${name}"
       class='card-image'
       />
       <span class='card-age'>${age} y.o.</span>
