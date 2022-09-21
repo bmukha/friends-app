@@ -12,7 +12,7 @@
   --card-witdh: 344px;
   --card-height: 216px;
   --header-height: 50px;
-  --footer-height: 20px;
+  --footer-height: 30px;
   --main-color: 45, 106, 79;
   --secondary-color: 173, 216, 230;
   --menu-width: 252px;
@@ -53,7 +53,7 @@ body {
   align-items: center;
   background: rgba(var(--secondary-color), 0.9);
   box-shadow: 0 5px 5px black;
-  z-index: 2;
+  z-index: 1;
   font-family: var(--secondary-font);
 }
 
@@ -126,8 +126,24 @@ fieldset {
   align-items: center;
 }
 
-h2 {
+.card-title,
+.card-name {
+  font-size: 1em;
+  font-style: normal;
+  font-weight: 400;
   text-align: center;
+}
+
+.card-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: start;
+  /* flex: 0 0 1em; */
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .footer {
@@ -141,6 +157,7 @@ h2 {
   background: rgba(var(--main-color), 0.9);
   border-top: 1px solid black;
   font-family: var(--secondary-font);
+  font-size: 1.5em;
 }
 
 .card {
@@ -156,8 +173,10 @@ h2 {
 
 .card-top {
   padding: 1rem;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 5fr 2fr;
   background-color: rgba(var(--main-color), 0.6);
   border-radius: 1rem 1rem 0 0;
   font-family: var(--main-font);
@@ -206,6 +225,7 @@ h2 {
 .icon {
   width: auto;
   height: 1em;
+  margin-right: 0.3em;
 }
 
 .card-email,
@@ -247,7 +267,6 @@ input:invalid {
 }
 
 .is-pressed {
-  /* outline: none; */
   border-color: #f58467;
   box-shadow: 0 0 10px #f58467;
 }

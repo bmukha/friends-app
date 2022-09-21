@@ -26,8 +26,8 @@ export const renderCards = (arr) => {
         `<article class='card' data-gender="${gender}">
   <div class='card-top'>
     <div class="title-and-name">
-      <span class='card-title'>${title}.</span>
-      <span class='card-name'>${name}</span>
+      <h3 class='card-title'>${title}.</h3>
+      <h2 class='card-name'>${name}</h2>
     </div>
     <div class="pic-and-age">  
       <img
