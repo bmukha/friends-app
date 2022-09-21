@@ -18,8 +18,6 @@
   --footer-height: 20px;
   --main-color: 45, 106, 79;
   --secondary-color: 173, 216, 230;
-  /* --main-color: 0, 0, 0;
-  --secondary-color: 255, 255, 255; */
   --menu-width: 252px;
   --main-font: Devroye;
   --secondary-font: Peas;
@@ -160,7 +158,7 @@ h2 {
   background-color: rgba(var(--main-color), 0.6);
   border-radius: 1rem 1rem 0 0;
   font-family: var(--main-font);
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 .card-image {
   border-radius: 1rem;
@@ -222,6 +220,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 0 0 auto;
 }
 
 .title-and-name {

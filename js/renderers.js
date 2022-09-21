@@ -10,7 +10,7 @@ export const renderSpinner = () => {
       </div>`;
 };
 
-export const renderCards = async (arr) => {
+export const renderCards = (arr) => {
   const cardsWrapper = document.createElement('div');
   cardsWrapper.id = 'cards-wrapper';
   if (!arr.length) {
