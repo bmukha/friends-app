@@ -31,39 +31,25 @@ export const state = {
       'name-ascending': (currentPerson, nextPerson) => {
         if (currentPerson.name < nextPerson.name) {
           return -1;
-        } else if (currentPerson.name === nextPerson.name) {
-          return 0;
-        } else {
+        } else if (currentPerson.name < nextPerson.name) {
           return 1;
+        } else {
+          return 0;
         }
       },
       'name-descending': (currentPerson, nextPerson) => {
         if (currentPerson.name > nextPerson.name) {
           return -1;
-        } else if (currentPerson.name === nextPerson.name) {
-          return 0;
-        } else {
+        } else if (currentPerson.name > nextPerson.name) {
           return 1;
+        } else {
+          return 0;
         }
       },
-      'age-ascending': (currentPerson, nextPerson) => {
-        if (+currentPerson.age < +nextPerson.age) {
-          return -1;
-        } else if (currentPerson.age === nextPerson.age) {
-          return 0;
-        } else {
-          return 1;
-        }
-      },
-      'age-descending': (currentPerson, nextPerson) => {
-        if (+currentPerson.age > +nextPerson.age) {
-          return -1;
-        } else if (currentPerson.age === nextPerson.age) {
-          return 0;
-        } else {
-          return 1;
-        }
-      },
+      'age-ascending': (currentPerson, nextPerson) =>
+        currentPerson.age - nextPerson.age,
+      'age-descending': (currentPerson, nextPerson) =>
+        nextPerson.age - currentPerson.age,
     };
 
     this.arrayToRender = this.initialArray
