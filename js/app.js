@@ -11,7 +11,7 @@ import { renderCards, renderSpinner } from './renderers.js';
 
 import { getPeopleFromResponse } from './fetchPeople.js';
 
-export const state = {
+const state = {
   initialArray: [],
   arrayToRender: [],
   filter: {
