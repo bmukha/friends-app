@@ -4,6 +4,7 @@ import {
   handleSortButtonClick,
   handleNameInputChange,
   handleMinAndMaxAgeInput,
+  handleResetButtonClick,
 } from './eventHandlers.js';
 
 import { renderCards, renderSpinner } from './renderers.js';
@@ -109,6 +110,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   document
     .getElementById('menu-button')
     .addEventListener('click', handleMenuButtonClick);
+
+  document
+    .getElementById('reset-button')
+    .addEventListener('click', handleResetButtonClick);
 
   document.getElementById('name-input').addEventListener('input', (event) => {
     handleNameInputChange(event);

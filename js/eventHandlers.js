@@ -42,6 +42,10 @@ export const handleSortButtonClick = (target) => {
   handleGroupOfButtons(target, 'sort-button');
 };
 
+export const handleResetButtonClick = () => {
+  alert("I'm working!");
+};
+
 export const handleNameInputChange = ({ target }) => {
   state.filter.name = target.value;
   state.prepareArrayToRender();
